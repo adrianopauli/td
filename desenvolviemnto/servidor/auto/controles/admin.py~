@@ -8,7 +8,7 @@ class ComandosInlines(admin.TabularInline):
 class ControleAdmin(admin.ModelAdmin):
 	inlines = [ComandosInlines]
 
-admin.site.register(Bloco)
+#admin.site.register(Bloco)
 admin.site.register(Sala)
 admin.site.register(Marca)
 admin.site.register(Controle,ControleAdmin)
