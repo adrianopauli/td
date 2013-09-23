@@ -1,7 +1,6 @@
 from comunicacao import rs485
 
 class TAGS(object):
-	MASTER_ADDRESS = 1
 	BYTE_START  = '#'
 	BYTE_STOP   = '$'
     	BYTE_SEPARATOR  = '/'
@@ -41,4 +40,4 @@ class Procolo(object):
 	def __init__(self):
 
 	def send_IR(ir):
-		comando = TAGS.BYTE_START+TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS+TAGS.BYTE_SEPARATOR+		
+		comando = P		

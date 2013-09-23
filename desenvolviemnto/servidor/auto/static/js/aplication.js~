@@ -1,6 +1,6 @@
 function sendComand(comando){
 	 $.ajax({
-        url: "/ajax/ir/",
+        url: "http://localhost:8000/ajax/ir/",
         dataType: "text",
         data:{'comando':comando},
         error: function(XMLHttpRequest, textStatus, errorThrown) {

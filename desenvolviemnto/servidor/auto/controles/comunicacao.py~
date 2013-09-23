@@ -19,6 +19,7 @@ class rs485(object):
 	def sendComand(self,comando):
 		GPIO.output(DE_PIN,True)
 		ser.write(comando)
+		ser.write("\n")
 		GPIO.output(DE_PIN,False)
 		return "ok"
 
