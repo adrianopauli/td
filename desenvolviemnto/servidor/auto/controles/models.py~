@@ -3,7 +3,7 @@ from django.db import models
 
 class Bloco(models.Model):
 	description = models.CharField("Descrição",max_length=200)
-	ip = models.IPAddressField(blank=False)
+	ip = models.IPAddressField(blank=True)
 	def __unicode__(self):
 		return self.description
 		

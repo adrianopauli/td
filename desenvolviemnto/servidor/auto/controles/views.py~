@@ -20,7 +20,7 @@ def salas(request):
 		})
 		return HttpResponse(t.render(c))
 	else:
-		salas = Sala.objects.all().filter(bloco_id=bloco[0].id)
+		salas = Sala.objects.all().filter(bloco_id=bloco[1].id)
 		t = loader.get_template('controles/salas.html')
 		c = Context({
 			'salas':salas,

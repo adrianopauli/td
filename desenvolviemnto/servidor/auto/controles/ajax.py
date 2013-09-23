@@ -11,6 +11,9 @@ def sendIR(request):
 		data = request.GET['comando']
 		node= request.GET['node']
 		pr = Procolo()
-		return HttpResponse(pr.sendIR(node,data),content_type = 'application/javascript; charset=utf8' )
+		message = "OK"		
+		if not pr.sendIR(node,data):
+			message = "ERROR"
+		return HttpResponse(message,content_type = 'application/javascript; charset=utf8' )
 	else :
 		return render_to_response('controles/404.html')

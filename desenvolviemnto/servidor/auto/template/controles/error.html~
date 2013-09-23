@@ -1,0 +1,7 @@
+{% extends "controles/base.html"%}
+
+{% block title %} Teste {% endblock %}
+
+{% block corpo %} 
+
+{% endblock %}

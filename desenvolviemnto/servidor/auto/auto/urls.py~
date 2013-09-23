@@ -9,5 +9,5 @@ urlpatterns = patterns('',
 	url(r'^controles/(?P<sala_id>\d+)$','controles.views.controles'),
 	url(r'^ajax/ir/$','controles.ajax.sendIR'),
 	url(r'^controle/(?P<controle_id>\d+)/(?P<sala_id>\d+)$','controles.views.controle'),
-	url(r'^salas/$','controles.views.salas'),
+	url(r'^salas/(?P<bloco_id>\d+)$','controles.views.salas'),
 )

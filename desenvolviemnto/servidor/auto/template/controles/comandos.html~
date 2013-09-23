@@ -13,6 +13,6 @@
 	{% else %}
 		<p>O controle não possui comandos</p>
 	{% endif%}
-	<div id="message">
+	<span id="message"></span>
 {% endblock %}
 
