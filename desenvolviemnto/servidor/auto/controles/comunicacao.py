@@ -17,11 +17,14 @@ class rs485(object):
 		GPIO.output(DE_PIN,True)
 
 	def sendComand(self,comando):
-		GPIO.output(DE_PIN,True)
-		ser.write(comando)
-		GPIO.output(DE_PIN,False)
-		return "ok"
-
+		try:
+			GPIO.output(DE_PIN,True)
+			ser.write(comando)
+			GPIO.output(DE_PIN,False)
+			return True
+		except Exception, e:
+			return False
+			
 	def readComand(self):
 		GPIO.output(RE_PIN,False)
 		return ser.readline()

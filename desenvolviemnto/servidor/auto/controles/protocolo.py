@@ -1,17 +1,17 @@
-from comunicacao import rs485
+from controles.comunicacao import rs485
 
 class TAGS(object):
 	MASTER_ADDRESS = 1
 	BYTE_START  = '#'
 	BYTE_STOP   = '$'
-    	BYTE_SEPARATOR  = '/'
-    	DATA_SEPARATOR  = '?'
+    BYTE_SEPARATOR  = '/'
+    DATA_SEPARATOR  = '?'
 
-    	ACTION_READ     = 1
-    	ACTION_WRITE    = 2
-    	ACTION_RESPONSE = 3
+    ACTION_READ     = 1
+    ACTION_WRITE    = 2
+    ACTION_RESPONSE = 3
 
-    	HARDWARE_IR       = 91
+    HARDWARE_IR       = 91
 	HARDWARE_RELE     = 92
 	HARDWARE_WEATHER  = 93
 
@@ -40,5 +40,29 @@ class Procolo(object):
 
 	def __init__(self):
 
-	def send_IR(ir):
-		comando = TAGS.BYTE_START+TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS+TAGS.BYTE_SEPARATOR+		
+	def sendIR(node,ir):
+		comando =  TAGS.BYTE_START+node		
+		comando += TAGS.BYTE_SEPARATOR+TAGS.ACTION_WRITE
+		comando += TAGS.BYTE_SEPARATOR+TAGS.HARDWARE_IR
+		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
+		comando += TAGS.BYTE_SEPARATOR+ir
+		comando += TAGS.BYTE_STOP
+		return rs.sendComand(comando)
+
+	def sendRele(node,ir):
+		comando =  TAGS.BYTE_START+node		
+		comando += TAGS.BYTE_SEPARATOR+TAGS.ACTION_WRITE
+		comando += TAGS.BYTE_SEPARATOR+TAGS.HARDWARE_RELE
+		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
+		comando += TAGS.BYTE_SEPARATOR+ir
+		comando += TAGS.BYTE_STOP
+		return rs.sendComand(comando)
+
+	def sendWeather(node,ir):
+		comando =  TAGS.BYTE_START+node		
+		comando += TAGS.BYTE_SEPARATOR+TAGS.ACTION_WRITE
+		comando += TAGS.BYTE_SEPARATOR+TAGS.HARDWARE_IR
+		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
+		comando += TAGS.BYTE_SEPARATOR+ir
+		comando += TAGS.BYTE_STOP
+		return rs.sendComand(comando)

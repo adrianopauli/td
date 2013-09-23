@@ -1,6 +1,6 @@
 from django.template import Context, loader
 from django.http import HttpResponse
-from controles.models import Controle,Comando
+from controles.models import Controle,Comando,Sala
 
 def index(request):
 	teste = 'teste muito loko'
@@ -9,12 +9,22 @@ def index(request):
 		'teste': teste,
     })
 	return HttpResponse(t.render(c))
-def controles(request):
-	controles = Controle.objects.all()
+
+def salas(request,bloco_id):
+	salas = Sala.objects.all().filter(bloco_id=bloco_id)
+	t = loader.get_template('controles/salas.html')
+	c = Context({
+		'salas':salas,
+	})
+	return HttpResponse(t.render(c))
+
+def controles(request,sala_id):
+	sala = Sala.objects.get(id=sala_id)
+	controles = Controle.objects.all().filter(sala=sala)
 	t = loader.get_template('controles/controles.html')
 	c = Context({
 		'controles':controles,
-		})
+	})
 	return HttpResponse(t.render(c))
 
 def controle(request,controle_id):
@@ -22,5 +32,5 @@ def controle(request,controle_id):
 	t = loader.get_template('controles/comandos.html')
 	c = Context({
 		'comandos':comandos,
-		})
+	})
 	return HttpResponse(t.render(c))

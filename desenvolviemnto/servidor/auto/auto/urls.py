@@ -6,7 +6,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	url(r'^$','controles.views.index'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^controles/$','controles.views.controles'),
+    url(r'^controles/(?P<sala_id>\d+)$','controles.views.controles'),
     url(r'^ajax/ir/$','controles.ajax.sendIR'),
     url(r'^controle/(?P<controle_id>\d+)$','controles.views.controle'),
+    url(r'^salas/(?P<bloco_id>\d+)$','controles.views.salas'),
 )

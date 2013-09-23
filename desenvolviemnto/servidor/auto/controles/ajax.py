@@ -4,12 +4,13 @@ from django.core import serializers
 from controles.models import Controle
 from django.utils import simplejson
 from django.shortcuts import render_to_response
-from comunicacao import rs485
+from controles.protocolo import Procolo
 
 def sendIR(request):
 	if request.is_ajax(): 
 		data = request.GET['comando']
-		rs = rs485()
-		return HttpResponse(rs.sendComand(data),content_type = 'application/javascript; charset=utf8' )
+		node= request.GET['node']
+		pr = Procolo()
+		return HttpResponse(pr.sendIR(node,data),content_type = 'application/javascript; charset=utf8' )
 	else :
 		return render_to_response('controles/404.html')
