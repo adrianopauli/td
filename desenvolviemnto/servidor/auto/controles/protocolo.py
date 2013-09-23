@@ -40,15 +40,13 @@ rs = rs485()
 class Procolo(object):
 	
 
-	def sendIR(self,node,ir):	
-		print(node)	
+	def sendIR(self,node,ir):		
 		comando =  TAGS.BYTE_START+node
 		comando += TAGS.BYTE_SEPARATOR+TAGS.ACTION_WRITE
 		comando += TAGS.BYTE_SEPARATOR+TAGS.HARDWARE_IR
 		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
 		comando += TAGS.BYTE_SEPARATOR+ir
 		comando += TAGS.BYTE_STOP
-		print(comando)
 		return rs.sendComand(comando)
 
 	def sendRele(self,node,data):
@@ -62,10 +60,13 @@ class Procolo(object):
 
 	def sendWeather(self,node):
 		comando =  TAGS.BYTE_START+node		
-		comando += TAGS.BYTE_SEPARATOR+TAGS.ACTION_WRITE
+		comando += TAGS.BYTE_SEPARATOR+TAGS.ACTION_READ
 		comando += TAGS.BYTE_SEPARATOR+TAGS.HARDWARE_WEATHER
 		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
 		comando += TAGS.BYTE_SEPARATOR+TAGS.DATA_NULL
 		comando += TAGS.BYTE_STOP
-		rs.sendComand(comando)
-		return  rs.readComand()
+		if rs.sendComand(comando):
+			return rs.readComand()
+		else:
+			return "ERROR"
+		

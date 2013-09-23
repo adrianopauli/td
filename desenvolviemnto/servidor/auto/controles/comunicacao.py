@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 ser = serial.Serial('/dev/ttyAMA0',4800,timeout=1)
 ser.open()
 RE_PIN = 7
-DE_PIN = 11
+DE_PIN = 13
 
 
 class rs485(object):
@@ -13,19 +13,25 @@ class rs485(object):
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(RE_PIN,GPIO.OUT)
 		GPIO.setup(DE_PIN,GPIO.OUT)
-		GPIO.output(RE_PIN,False)
+		GPIO.output(RE_PIN,True)
 		GPIO.output(DE_PIN,True)
 
 	def sendComand(self,comando):
 		try:
+			GPIO.output(RE_PIN,True)
 			GPIO.output(DE_PIN,True)
 			ser.write(comando)
-			GPIO.output(DE_PIN,False)
+			GPIO.output(DE_PIN,True)
+			GPIO.output(RE_PIN,False)
 			return True
 		except Exception, e:
 			return False
 			
 	def readComand(self):
-		return ser.readline()
-			
+		GPIO.output(RE_PIN,False)
+		#GPIO.output(DE_PIN,False)
+		c = ser.readline()
+		while len(c) < 0:
+			c = ser.readLine()
+		return c	
 

@@ -60,7 +60,8 @@ def temperatura(request):
 		salas = Sala.objects.all().filter(bloco_id=bloco[0].id)
 		pr = Procolo()
 		for sala in salas:
-			print(pr.sendWeather(sala.NE))
+			print(str(sala.NE))
+			print(pr.sendWeather(str(sala.NE)))
 		t = loader.get_template('controles/temperatura.html')
 		c = Context({
 			'salas':salas,
