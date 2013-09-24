@@ -1,6 +1,14 @@
 from controles.comunicacao import rs485
+from controles.singleton import Singleton
 import array
 
+class Con(object):
+	__metaclass__=Singleton
+	
+	def __init__(self):
+		rs = rs485()
+		self.rs = rs
+con = Con()
 class TAGS(object):
 	MASTER_ADDRESS = '1'
 	BYTE_START  = '#'
@@ -37,7 +45,7 @@ class TAGS(object):
 	MITSUBISHI = 10
 	RAW_IR     = 11
 
-rs = rs485()
+
 class Protocolo(object):	
 
 	def sendIR(self,node,ir):		
@@ -47,7 +55,7 @@ class Protocolo(object):
 		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
 		comando += TAGS.BYTE_SEPARATOR+ir
 		comando += TAGS.BYTE_STOP
-		return rs.sendComand(comando)
+		return con.rs.sendComand(comando)
 
 	def sendRele(self,node,data):
 		comando =  TAGS.BYTE_START+node		
@@ -56,7 +64,7 @@ class Protocolo(object):
 		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
 		comando += TAGS.BYTE_SEPARATOR+data
 		comando += TAGS.BYTE_STOP
-		return rs.sendComand(comando)
+		return con.rs.sendComand(comando)
 
 	def sendWeather(self,node):
 		comando =  TAGS.BYTE_START+node		
@@ -65,8 +73,8 @@ class Protocolo(object):
 		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
 		comando += TAGS.BYTE_SEPARATOR+TAGS.DATA_NULL
 		comando += TAGS.BYTE_STOP
-		if rs.sendComand(comando):
-			weather = Weather(str(self.interpreterWeather(str(rs.readComand()))))			
+		if con.rs.sendComand(comando):
+			weather = Weather(str(self.interpreterWeather(str(con.rs.readComand()))))			
 			return weather
 		else:
 			return None
@@ -88,4 +96,4 @@ class Weather(object):
 			d = data.split(TAGS.DATA_SEPARATOR)
 			if len(d) == 2:
 				self.umidade = d[0]
-				self.temperatura = d[1] 		
+				self.temperatura = d[1] 	

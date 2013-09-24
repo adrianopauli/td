@@ -2,7 +2,7 @@
 from django.template import Context, loader
 from django.http import HttpResponse
 from controles.models import Controle,Comando,Sala,Bloco
-from controles.protocolo import Protocolo,Weather
+from controles.protocolo import Protocolo,Weather 
 
 def index(request):
 	teste = 'teste muito loko'

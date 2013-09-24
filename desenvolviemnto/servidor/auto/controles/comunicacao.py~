@@ -1,7 +1,7 @@
 import serial
 import RPi.GPIO as GPIO
 
-ser = serial.Serial('/dev/ttyAMA0',4800,timeout=1)
+ser = serial.Serial('/dev/ttyAMA0',4800)
 ser.open()
 RE_PIN = 7
 DE_PIN = 13
@@ -26,7 +26,6 @@ class rs485(object):
 			return False
 			
 	def readComand(self):
-		GPIO.output(DE_PIN,False)
 		GPIO.output(RE_PIN,False)
 		c = ser.readline()
 		while len(c) < 0:
