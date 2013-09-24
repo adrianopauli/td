@@ -3,17 +3,15 @@
 {% block title %} Teste {% endblock %}
 
 {% block corpo %} 
-	<p>{{ sala.description }}</p>
+	<p>Sala: {{ sala.description }}</p>
 	{% if weather  %}
 		<p>Umidade: {{ weather.umidade }}</p>
 		<p>Temperatura: {{ weather.temperatura }}</p>	
 	{% endif%}
 	{% if controles %}
-		<ul>
-			{% for controle in controles %}
-			<li><a href="/controle/{{ controle.id}}/{{ sala.id }}">{{ controle.description }}</a></li>
-			{% endfor %}
-		</ul>
+		{% for controle in controles %}
+			<a href="/controle/{{ controle.id}}/{{ sala.id }}" class="btn btn-default">{{ controle.description }}</a>
+		{% endfor %}
 	{% else %}
 		<p>Não encontrei nenhum</p>
 	{% endif %}

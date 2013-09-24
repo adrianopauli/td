@@ -11,7 +11,7 @@ class ControleAdmin(admin.ModelAdmin):
 	]
 	list_display = ('description','modelo','marca')
 	inlines = [ComandosInlines]
-	
+
 admin.site.register(Bloco)
 admin.site.register(Sala)
 admin.site.register(Marca)

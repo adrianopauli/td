@@ -1,6 +1,6 @@
 {% extends "controles/base.html"%}
 
-{% block title %} Salas {% endblock %}
+{% block title %} Salas {{ user.name }} {% endblock %}
 
 {% block corpo %} 
 	{% if salas %}

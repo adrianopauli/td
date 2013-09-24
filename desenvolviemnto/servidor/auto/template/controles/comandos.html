@@ -3,13 +3,11 @@
 {% block title %} Comandos{% endblock %}
 
 {% block corpo %} 
-	<p>{{ sala.description }}</p>
+	<p>Sala: {{ sala.description }}</p>
 	{% if comandos %}
-		<ul>
 		{% for comando in comandos %}
-			<li><button onclick="sendComand('{{ comando.comando }}','{{ sala.NE }}')">{{ comando.description }}</button></li>
+			<button onclick="sendComand('{{ comando.comando }}','{{ sala.NE }}')" class="btn btn-default">{{ comando.description }}</button>
 		{% endfor%}	
-		</ul>
 	{% else %}
 		<p>O controle não possui comandos</p>
 	{% endif%}

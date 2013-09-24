@@ -9,7 +9,7 @@ class ControleAdmin(admin.ModelAdmin):
 	fieldsets=[
 		(None,{'fields':['description','modelo','marca']}),
 	]
-	list_display = {'description','modelo','marca'}
+	list_display = ('description','modelo','marca')
 	inlines = [ComandosInlines]
 	
 admin.site.register(Bloco)

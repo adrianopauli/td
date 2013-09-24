@@ -3,6 +3,7 @@
 {% block title %} Blocos {% endblock %}
 
 {% block corpo %} 
+	{{ user.name}}
 	{% if blocos %}
 		{% for bloco in blocos %}
 			<a href="http://{{ bloco.ip }}:8000/salas" class="btn btn-default">{{ bloco.description }}</a>		

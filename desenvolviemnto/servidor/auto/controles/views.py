@@ -5,11 +5,11 @@ from controles.models import Controle,Comando,Sala,Bloco
 from controles.protocolo import Protocolo,Weather 
 
 def index(request):
-	teste = 'teste muito loko'
+	blocos = Bloco.objects.all()
 	t = loader.get_template('controles/index.html')
 	c = Context({
-		'teste': teste,
-    })
+		'blocos': blocos,
+    	})
 	return HttpResponse(t.render(c))
 
 def salas(request):
