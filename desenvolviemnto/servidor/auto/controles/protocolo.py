@@ -72,6 +72,7 @@ class Protocolo(object):
 			return None
 			
 	def interpreterWeather(self,comandos):		
+		print(comandos)
 		comandos = comandos.replace(TAGS.BYTE_START, '')
 		comando = ""
 		for c in comandos.split(TAGS.BYTE_STOP):

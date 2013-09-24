@@ -2,7 +2,6 @@ from django.http import HttpResponse
 from django.http import HttpRequest
 from django.core import serializers
 from controles.models import Controle
-from django.utils import simplejson
 from django.shortcuts import render_to_response
 from controles.protocolo import Protocolo
 

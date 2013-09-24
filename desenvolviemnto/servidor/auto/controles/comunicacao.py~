@@ -26,10 +26,11 @@ class rs485(object):
 			return False
 			
 	def readComand(self):
+		GPIO.output(DE_PIN,False)
 		GPIO.output(RE_PIN,False)
 		c = ser.readline()
 		while len(c) < 0:
 			c = ser.readLine()
-		GPIO.output(RE_PIN,True)
+		GPIO.output(RE_PIN,False)
 		return c	
 
