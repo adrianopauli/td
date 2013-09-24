@@ -10,4 +10,5 @@ urlpatterns = patterns('',
 	url(r'^ajax/ir/$','controles.ajax.sendIR'),
 	url(r'^controle/(?P<controle_id>\d+)/(?P<sala_id>\d+)$','controles.views.controle'),
 	url(r'^salas/$','controles.views.salas'),
+	url(r'^temperatura/$','controles.views.temperatura'),
 )

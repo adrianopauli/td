@@ -4,10 +4,14 @@
 
 {% block corpo %} 
 	<p>{{ sala.description }}</p>
+	{% if weather %}
+		<p>Umidade: {{ weather.umidade }}</p>
+		<p>Temperatura: {{ weather.temperatura }}</p>	
+	{% endif%}
 	{% if controles %}
 		<ul>
 			{% for controle in controles %}
-			<li><a href="/controle/{{ controle.id}}">{{ controle.description }}</a></li>
+			<li><a href="/controle/{{ controle.id}}/{{ sala.id }}">{{ controle.description }}</a></li>
 			{% endfor %}
 		</ul>
 	{% else %}

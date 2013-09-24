@@ -1,4 +1,5 @@
 from controles.comunicacao import rs485
+import array
 
 class TAGS(object):
 	MASTER_ADDRESS = '1'
@@ -15,11 +16,11 @@ class TAGS(object):
 	HARDWARE_RELE     = '92'
 	HARDWARE_WEATHER  = '93'
 
-	PROTOCOL_ADRESSES    = '0'
-	PROTOCOL_TYPE        = '1'
-	PROTOCOL_HARDWARE    = '2'
-	PROTOCOL_NODE_ORIGIN = '3'
-	PROTOCOL_DATA        = '4'
+	PROTOCOL_ADRESSES    = 0
+	PROTOCOL_TYPE        = 1
+	PROTOCOL_HARDWARE    = 2
+	PROTOCOL_NODE_ORIGIN = 3
+	PROTOCOL_DATA        = 4
 
 	DATA_ERROR = "ERROR"
 	DATA_NULL  = "null"
@@ -37,8 +38,7 @@ class TAGS(object):
 	RAW_IR     = 11
 
 rs = rs485()
-class Procolo(object):
-	
+class Protocolo(object):	
 
 	def sendIR(self,node,ir):		
 		comando =  TAGS.BYTE_START+node
@@ -66,7 +66,25 @@ class Procolo(object):
 		comando += TAGS.BYTE_SEPARATOR+TAGS.DATA_NULL
 		comando += TAGS.BYTE_STOP
 		if rs.sendComand(comando):
-			return rs.readComand()
+			weather = Weather(str(self.interpreterWeather(str(rs.readComand()))))			
+			return weather
 		else:
-			return "ERROR"
-		
+			return None
+			
+	def interpreterWeather(self,comandos):		
+		comandos = comandos.replace(TAGS.BYTE_START, '')
+		comando = ""
+		for c in comandos.split(TAGS.BYTE_STOP):
+			d = c.split(TAGS.BYTE_SEPARATOR)
+			if (d[TAGS.PROTOCOL_ADRESSES] == TAGS.MASTER_ADDRESS 
+			and d[TAGS.PROTOCOL_HARDWARE] == TAGS.HARDWARE_WEATHER):
+				return d[TAGS.PROTOCOL_DATA]
+		return None
+class Weather(object):
+	
+	def __init__(self,data):
+		if data != TAGS.DATA_ERROR:
+			d = data.split(TAGS.DATA_SEPARATOR)
+			if len(d) == 2:
+				self.umidade = d[0]
+				self.temperatura = d[1] 		

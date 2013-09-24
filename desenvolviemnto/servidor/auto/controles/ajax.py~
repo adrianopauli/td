@@ -4,7 +4,7 @@ from django.core import serializers
 from controles.models import Controle
 from django.utils import simplejson
 from django.shortcuts import render_to_response
-from comunicacao.protocolo import Procolo
+from controles.protocolo import Procolo
 
 def sendIR(request):
 	if request.is_ajax(): 

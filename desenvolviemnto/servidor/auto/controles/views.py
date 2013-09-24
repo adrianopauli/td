@@ -2,7 +2,7 @@
 from django.template import Context, loader
 from django.http import HttpResponse
 from controles.models import Controle,Comando,Sala,Bloco
-from controles.protocolo import Procolo
+from controles.protocolo import Protocolo,Weather
 
 def index(request):
 	teste = 'teste muito loko'
@@ -30,11 +30,14 @@ def salas(request):
 
 def controles(request,sala_id):
 	sala = Sala.objects.get(id=sala_id)
+	pr = Protocolo()
+	weather = pr.sendWeather(str(sala.NE))
 	controles = Controle.objects.all().filter(sala=sala)
 	t = loader.get_template('controles/controles.html')
 	c = Context({
 		'controles':controles,
 		'sala':sala,
+		'weather':weather,
 	})
 	return HttpResponse(t.render(c))
 
@@ -47,23 +50,3 @@ def controle(request,controle_id,sala_id):
 		'sala':sala,
 	})
 	return HttpResponse(t.render(c))
-
-def temperatura(request):
-	bloco = Bloco.objects.filter(ip=request.META['SERVER_NAME'])
-	if not bloco.exists():
-		t = loader.get_template('controles/error.html')
-		c = Context({
-			'message':"O boco não existe",
-		})
-		return HttpResponse(t.render(c))
-	else:
-		salas = Sala.objects.all().filter(bloco_id=bloco[0].id)
-		pr = Procolo()
-		for sala in salas:
-			print(str(sala.NE))
-			print(pr.sendWeather(str(sala.NE)))
-		t = loader.get_template('controles/temperatura.html')
-		c = Context({
-			'salas':salas,
-		})
-		return HttpResponse(t.render(c))

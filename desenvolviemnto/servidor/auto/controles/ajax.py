@@ -4,13 +4,13 @@ from django.core import serializers
 from controles.models import Controle
 from django.utils import simplejson
 from django.shortcuts import render_to_response
-from controles.protocolo import Procolo
+from controles.protocolo import Protocolo
 
 def sendIR(request):
 	if request.is_ajax(): 
 		data = request.GET['comando']
 		node= request.GET['node']
-		pr = Procolo()
+		pr = Protocolo()
 		message = "OK"		
 		if not pr.sendIR(node,data):
 			message = "ERROR"

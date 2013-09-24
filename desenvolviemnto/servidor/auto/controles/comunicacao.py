@@ -18,20 +18,18 @@ class rs485(object):
 
 	def sendComand(self,comando):
 		try:
-			GPIO.output(RE_PIN,True)
 			GPIO.output(DE_PIN,True)
 			ser.write(comando)
 			GPIO.output(DE_PIN,True)
-			GPIO.output(RE_PIN,False)
 			return True
 		except Exception, e:
 			return False
 			
 	def readComand(self):
 		GPIO.output(RE_PIN,False)
-		#GPIO.output(DE_PIN,False)
 		c = ser.readline()
 		while len(c) < 0:
 			c = ser.readLine()
+		GPIO.output(RE_PIN,False)
 		return c	
 
