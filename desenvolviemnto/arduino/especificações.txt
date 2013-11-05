@@ -1,0 +1,8 @@
+Especificações
+	- Leitura
+		* weather
+		* presenca
+	- Escrita
+		* IR
+		* Rele
+		* Radio
