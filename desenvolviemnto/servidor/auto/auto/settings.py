@@ -107,7 +107,7 @@ ROOT_URLCONF = 'auto.urls'
 WSGI_APPLICATION = 'auto.wsgi.application'
 
 TEMPLATE_DIRS = (
-    "D:/django/auto/template",
+    "../auto/template",
 )
 
 INSTALLED_APPS = (
