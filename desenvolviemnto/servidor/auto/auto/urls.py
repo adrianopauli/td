@@ -7,4 +7,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^teste/$','controles.views.index'),
     url(r'^controles/$','controles.views.controles'),
+    url(r'^ajax/ir/$','controles.ajax.sendIR'),
+    url(r'^controle/(?P<controle_id>\d+)$','controles.views.controle'),
 )

@@ -13,8 +13,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'automacao_db',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '4588190226',                  # Not used with sqlite3.
+        'USER': 'automacao',                      # Not used with sqlite3.
+        'PASSWORD': 'automacao',                  # Not used with sqlite3.
         'HOST': '192.168.6.223',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '3306',                     # Set to empty string for default. Not used with sqlite3.
     }
@@ -68,9 +68,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    'static',
 )
 
 # List of finder classes that know how to find static files in
