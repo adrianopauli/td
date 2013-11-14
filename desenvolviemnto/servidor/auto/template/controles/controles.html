@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Comandos</title>
+</head>
+<body>
+{% if controles %}
+	<ul>
+		{% for controle in controles %}
+		<li>{{ controle.description }}</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>Não encontrei nenhum</p>
+{% endif %}
+</body>
+</html>
