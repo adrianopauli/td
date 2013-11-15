@@ -15,7 +15,7 @@ DATABASES = {
         'NAME': 'automacao_db',                      # Or path to database file if using sqlite3.
         'USER': 'automacao',                      # Not used with sqlite3.
         'PASSWORD': 'automacao',                  # Not used with sqlite3.
-        'HOST': '192.168.6.223',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '192.168.1.101',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '3306',                     # Set to empty string for default. Not used with sqlite3.
     }
 }
