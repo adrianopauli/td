@@ -10,5 +10,5 @@ class ControleAdmin(admin.ModelAdmin):
 
 admin.site.register(Bloco)
 admin.site.register(Sala)
-admin.site.register(TipoControle)
+admin.site.register(Marca)
 admin.site.register(Controle,ControleAdmin)

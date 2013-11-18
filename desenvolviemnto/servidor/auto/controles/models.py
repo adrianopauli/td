@@ -2,6 +2,27 @@ from django.db import models
 
 class Bloco(models.Model):
 	description = models.CharField(max_length=200)
+	ip = models.IPAddressField()
+	def __unicode__(self):
+		return self.description
+		
+class Marca(models.Model):
+	description = models.CharField(max_length=200)
+	def __unicode__(self):
+		return self.description
+
+class Controle(models.Model):
+	marca = models.ForeignKey(Marca)
+	modelo = models.CharField(max_length=200)
+	description = models.CharField(max_length=200)
+	
+	def __unicode__(self):
+		return self.modelo
+
+class Comando(models.Model):
+	controle = models.ForeignKey(Controle)
+	description = models.CharField(max_length=200)
+	comando = models.CharField(max_length=200)
 
 	def __unicode__(self):
 		return self.description
@@ -9,30 +30,13 @@ class Bloco(models.Model):
 class Sala(models.Model):
 	bloco = models.ForeignKey(Bloco)
 	description = models.CharField(max_length=200)
-	numeroDoEquipamento = models.IntegerField()
-
+	NE = models.PositiveIntegerField()
+	controles = models.ManyToManyField(Controle)
 	def __unicode__(self):
 		return self.description
 
-class TipoControle(models.Model):
-	description = models.CharField(max_length=200)
-	numeroProtocolo = models.IntegerField()
-
-	def __unicode__(self):
-		return self.description
-
-class Controle(models.Model):
+class Sensor(models.Model):
 	sala = models.ForeignKey(Sala)
-	tipo = models.ForeignKey(TipoControle)
-	description = models.CharField(max_length=200)
-	
-	def __unicode__(self):
-		return self.description
-
-class Comando(models.Model):
-	controle = models.ForeignKey(Controle)
-	description = models.CharField(max_length=200)
-	comando = models.CharField(max_length=1000)
-
-	def __unicode__(self):
-		return self.description
+	temperatura = models.DecimalField(max_digits=2,decimal_places=2)
+	umidade = models.DecimalField(max_digits=2,decimal_places=2)
+	data = models.DateTimeField();
