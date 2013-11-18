@@ -4,7 +4,7 @@ int RECV_PIN = 12;
 
 const int RAW_IR = 11;
 
-const char DATA_SEPARATOR  = '&';
+const char DATA_SEPARATOR  = '?';
 
 IRrecv irrecv(RECV_PIN);
 decode_results results;

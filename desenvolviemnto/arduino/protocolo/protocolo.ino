@@ -126,6 +126,7 @@ void comandWrite(int hardware,String data,int node){
 void sendIR(int type, String data){
   long value = data.toInt();
   if (type == NEC) {
+    Serial.write(value);
     irsend.sendNEC(value, 32);
   } 
   else if (type == SONY) {
