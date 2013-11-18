@@ -1,0 +1,17 @@
+{% extends "controles/base.html"%}
+
+{% block title %} Comandos{% endblock %}
+
+{% block corpo %} 
+	{% if comandos %}
+		<ul>
+		{% for comando in comandos %}
+			<li><button onclick="sendComand('{{ comando.comando }}')">{{ comando.description }}</button></li>
+		{% endfor%}	
+		</ul>
+	{% else %}
+		<p>O controle não possui comandos</p>
+	{% endif%}
+	
+{% endblock %}
+
