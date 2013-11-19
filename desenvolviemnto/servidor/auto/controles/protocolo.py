@@ -1,4 +1,5 @@
 from controles.comunicacao import rs485
+import array
 
 class TAGS(object):
 	MASTER_ADDRESS = '1'
@@ -66,7 +67,15 @@ class Procolo(object):
 		comando += TAGS.BYTE_SEPARATOR+TAGS.DATA_NULL
 		comando += TAGS.BYTE_STOP
 		if rs.sendComand(comando):
-			return rs.readComand()
+			interpreterWeather(rs.readComand())
 		else:
 			return "ERROR"
-		
+			
+	def interpreterWeather(self,comandos):
+		comandos = comandos.replace('#', '')
+		comando=[]
+		for c in comandos.split('$'):
+		    d = c.split('/')
+		    if d[0] == '1':
+		        comando.insert(0,c)
+		return comando
