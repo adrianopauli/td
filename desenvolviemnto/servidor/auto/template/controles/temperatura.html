@@ -1,0 +1,15 @@
+{% extends "controles/base.html"%}
+
+{% block title %} Teste {% endblock %}
+
+{% block corpo %} 
+	{% if salas %}
+		<ul>
+			{% for sala in salas %}
+			<li>{{ sala.description }}</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>Não encontrei nenhum</p>
+	{% endif %}
+{% endblock %}  

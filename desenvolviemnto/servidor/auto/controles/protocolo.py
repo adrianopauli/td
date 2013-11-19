@@ -22,6 +22,7 @@ class TAGS(object):
 	PROTOCOL_DATA        = '4'
 
 	DATA_ERROR = "ERROR"
+	DATA_NULL  = "null"
 
 	NEC        = 1
 	SONY       = 2
@@ -50,20 +51,21 @@ class Procolo(object):
 		print(comando)
 		return rs.sendComand(comando)
 
-	def sendRele(self,node,ir):
+	def sendRele(self,node,data):
 		comando =  TAGS.BYTE_START+node		
 		comando += TAGS.BYTE_SEPARATOR+TAGS.ACTION_WRITE
 		comando += TAGS.BYTE_SEPARATOR+TAGS.HARDWARE_RELE
 		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
-		comando += TAGS.BYTE_SEPARATOR+ir
+		comando += TAGS.BYTE_SEPARATOR+data
 		comando += TAGS.BYTE_STOP
 		return rs.sendComand(comando)
 
-	def sendWeather(self,node,ir):
+	def sendWeather(self,node):
 		comando =  TAGS.BYTE_START+node		
 		comando += TAGS.BYTE_SEPARATOR+TAGS.ACTION_WRITE
 		comando += TAGS.BYTE_SEPARATOR+TAGS.HARDWARE_WEATHER
 		comando += TAGS.BYTE_SEPARATOR+TAGS.MASTER_ADDRESS
-		comando += TAGS.BYTE_SEPARATOR+ir
+		comando += TAGS.BYTE_SEPARATOR+TAGS.DATA_NULL
 		comando += TAGS.BYTE_STOP
-		return rs.sendComand(comando)
+		rs.sendComand(comando)
+		return  rs.readComand()

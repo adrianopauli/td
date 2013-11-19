@@ -26,7 +26,6 @@ class rs485(object):
 			return False
 			
 	def readComand(self):
-		GPIO.output(RE_PIN,False)
 		return ser.readline()
 			
 
