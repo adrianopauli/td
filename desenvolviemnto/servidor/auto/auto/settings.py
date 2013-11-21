@@ -108,13 +108,13 @@ WSGI_APPLICATION = 'auto.wsgi.application'
 TEMPLATE_DIRS = (
     "../auto/template",
 )
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
-	'django.core.context_processors.request',
-)
+#from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+#TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+#	'django.core.context_processors.request',
+#)
 
 INSTALLED_APPS = (
-    'suit',
+ #   'suit',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -159,9 +159,9 @@ LOGGING = {
     }
 }
 
-SUIT_CONFIG = {
-	'ADMIN_NAME' : 'Easy Living',
-	'HEADER_DATE_FORMAT' : 'l, j F Y',
-	'HEADER_TIME_FORMAT' :'H:i',
-	#'MENU':('sites',{'label':'loko','icon':'icon_leaf','url':'/salas'}),
-}
+#SUIT_CONFIG = {
+#	'ADMIN_NAME' : 'Easy Living',
+#	'HEADER_DATE_FORMAT' : 'l, j #F Y',
+#	'HEADER_TIME_FORMAT' :'H:i',
+#	#'MENU':('sites',{'label':'loko','icon':'icon_leaf','url':'/salas'}),
+#}

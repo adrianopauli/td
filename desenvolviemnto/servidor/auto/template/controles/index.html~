@@ -1,4 +1,4 @@
-{% extends "admin/base.html"%}
+{% extends "cotroles/base.html"%}
 
 {% block title %} Blocos {% endblock %}
 
@@ -6,9 +6,10 @@
 	{{ admin.username }}
 	{% if blocos %}
 		{% for bloco in blocos %}
-			<a href="http://{{ bloco.ip }}:8000/salas" class="btn btn-default">{{ bloco.description }}</a>		
+			<a href="http://{{ bloco.ip }}:8000/salas" class="btn btn-default"><i class="icon-home"></i>          {{ bloco.description }}</a>		
 		{% endfor %}
 	{% else %}
 		<p>Não a blocos cadastrados</p>
 	{% endif %}
 {% endblock %}
+

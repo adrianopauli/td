@@ -1,4 +1,4 @@
-{% extends "admin/base.html"%}
+{% extends "cotroles/base.html"%}
 
 {% block title %} Salas{% endblock %}
 

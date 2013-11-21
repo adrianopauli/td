@@ -163,5 +163,5 @@ SUIT_CONFIG = {
 	'ADMIN_NAME' : 'Easy Living',
 	'HEADER_DATE_FORMAT' : 'l, j F Y',
 	'HEADER_TIME_FORMAT' :'H:i',
-	'MENU':('sites',{'label':'loko','icon':'icon_leaf','url':'/salas'}),
+	#'MENU':('sites',{'label':'loko','icon':'icon_leaf','url':'/salas'}),
 }
