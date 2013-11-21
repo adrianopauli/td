@@ -1,16 +1,21 @@
-{% extends "controles/base.html"%}
+{% extends "admin/base_site.html"%}
 
-{% block title %} Comandos{% endblock %}
+{% block title %} Comandos {% endblock %}
 
-{% block corpo %} 
-	<p>Sala: {{ sala.description }}</p>
+{% block content %} 
+	<p>{{ sala.description }}</p>
 	{% if comandos %}
+		<ul>
 		{% for comando in comandos %}
-			<button onclick="sendComand('{{ comando.comando }}','{{ sala.NE }}')" class="btn btn-default">{{ comando.description }}</button>
+			<li><button onclick="sendComand('{{ comando.comando }}','{{ sala.NE }}')">{{ comando.description }}</button></li>
 		{% endfor%}	
+		</ul>
 	{% else %}
 		<p>O controle não possui comandos</p>
 	{% endif%}
-	<div id="message">
+	<div id="message"></div>
+	{% block script %}
+		<script type="text/javascript" src="/static/js/aplication.js"></script>
+	{% endblock %}
 {% endblock %}
 

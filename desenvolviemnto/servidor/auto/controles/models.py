@@ -19,7 +19,7 @@ class Controle(models.Model):
 	description = models.CharField("Descrição",max_length=200)
 	
 	def __unicode__(self):
-		return self.modelo
+		return self.modelo+' - '+self.description+' - '+self.marca.description
 
 class Comando(models.Model):
 	controle = models.ForeignKey(Controle)

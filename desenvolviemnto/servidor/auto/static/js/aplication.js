@@ -13,6 +13,7 @@ function sendComand(comando,node){
         }
     });
 }
+
 function  fade_out(){
 	$('#message_alert').fadeOut(500);	
 }

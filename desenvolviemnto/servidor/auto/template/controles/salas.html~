@@ -1,12 +1,14 @@
-{% extends "controles/base.html"%}
+{% extends "admin/base.html"%}
 
-{% block title %} Salas {{ user.name }} {% endblock %}
+{% block title %} Salas{% endblock %}
 
-{% block corpo %} 
+{% block content %} 
 	{% if salas %}
-		{% for sala in salas %}
-			<a href="/controles/{{ sala.id}}" class="btn btn-default">{{ sala.description }}</a>
-		{% endfor %}
+		<ul>
+			{% for sala in salas %}
+			<li><a href="/controles/{{ sala.id}}">{{ sala.description }}</a></li>
+			{% endfor %}
+		</ul>
 	{% else %}
 		<p>Não encontrei nenhum</p>
 	{% endif %}

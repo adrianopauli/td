@@ -4,13 +4,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	#url(r'^$','controles.views.index'),
-	url(r'^$','django.contrib.auth.views.login',{'template_name':'controles/index.html'},name='login'),
-	url(r'^logout/$','django.contrib.auth.views.logout_then_login',name='logout'),
+	url(r'^$','controles.views.index'),
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^controles/(?P<sala_id>\d+)$','controles.views.controles'),
 	url(r'^ajax/ir/$','controles.ajax.sendIR'),
 	url(r'^controle/(?P<controle_id>\d+)/(?P<sala_id>\d+)$','controles.views.controle'),
 	url(r'^salas/$','controles.views.salas'),
-	#url(r'^temperatura/$','controles.views.temperatura'),
+	url(r'^home/$','controles.home.index'),
 )

@@ -6,9 +6,13 @@
 	{{ admin.username }}
 	{% if blocos %}
 		{% for bloco in blocos %}
-			<a href="http://{{ bloco.ip }}:8000/salas" class="btn btn-default">{{ bloco.description }}</a>		
+			<a href="/salas" class="btn btn-default">{{ bloco.description }}</a>		
 		{% endfor %}
 	{% else %}
 		<p>Não a blocos cadastrados</p>
 	{% endif %}
+{% endblock %}
+
+{% block script %}
+	
 {% endblock %}

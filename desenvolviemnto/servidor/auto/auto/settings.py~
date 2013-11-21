@@ -108,8 +108,13 @@ WSGI_APPLICATION = 'auto.wsgi.application'
 TEMPLATE_DIRS = (
     "../auto/template",
 )
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+	'django.core.context_processors.request',
+)
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -118,8 +123,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'controles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -130,10 +133,8 @@ INSTALLED_APPS = (
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 
-from django.core.urlresolvers import reverse_lazy
-LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('login')
-LOGOUT_URL = reverse_lazy('logout')
+LOGIN_URL = '/admin'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -156,4 +157,11 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+SUIT_CONFIG = {
+	'ADMIN_NAME' : 'Easy Living',
+	'HEADER_DATE_FORMAT' : 'l, j F Y',
+	'HEADER_TIME_FORMAT' :'H:i',
+	'MENU':('sites',{'label':'loko','icon':'icon_leaf','url':'/salas'}),
 }

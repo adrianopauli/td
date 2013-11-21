@@ -1,17 +1,19 @@
-{% extends "controles/base.html"%}
+{% extends "admin/base_site.html"%}
 
-{% block title %} Teste {% endblock %}
+{% block title %} Controles {% endblock %}
 
-{% block corpo %} 
+{% block content %} 
 	<p>{{ sala.description }}</p>
 	{% if weather  %}
 		<p>Umidade: {{ weather.umidade }}</p>
 		<p>Temperatura: {{ weather.temperatura }}</p>	
 	{% endif%}
 	{% if controles %}
-		{% for controle in controles %}
-			<a href="/controle/{{ controle.id}}/{{ sala.id }}" class="btn btn-default">{{ controle.description }}</a>
-		{% endfor %}
+		<ul>
+			{% for controle in controles %}
+			<li><a href="/controle/{{ controle.id}}/{{ sala.id }}">{{ controle.description }}</a></li>
+			{% endfor %}
+		</ul>
 	{% else %}
 		<p>Não encontrei nenhum</p>
 	{% endif %}

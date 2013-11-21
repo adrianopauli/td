@@ -19,7 +19,7 @@ class Controle(models.Model):
 	description = models.CharField("Descrição",max_length=200)
 	
 	def __unicode__(self):
-		return self.modelo
+		return self.modelo+' - '+self.description+' - '+self.modelo.description
 
 class Comando(models.Model):
 	controle = models.ForeignKey(Controle)
@@ -34,7 +34,7 @@ class Sala(models.Model):
 	description = models.CharField("Descrição",max_length=200)
 	NE = models.PositiveIntegerField()
 	controles = models.ManyToManyField(Controle)
-	user = models.ManyToManyField("Usuarios",User)
+	user = models.ManyToManyField(User)
 	def __unicode__(self):
 		return self.description
 
