@@ -9,8 +9,8 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 @csrf_exempt
 def sendIR(request):
 	if request.method == 'POST': 
-		data = request.GET['comando']
-		node= request.GET['node']
+		data = request.POST['comando']
+		node= request.POST['node']
 		pr = Protocolo()
 		message = "OK"		
 		if not pr.sendIR(node,data):
