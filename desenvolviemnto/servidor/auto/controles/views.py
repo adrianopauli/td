@@ -34,6 +34,7 @@ def salas(request):
 		c = Context({
 			'salas':salas,
 			'user':request.user,
+			'bloco' : bloco[0],
 		})
 		return TemplateResponse(request,t,c)
 @login_required
@@ -50,6 +51,7 @@ def controles(request,sala_id):
 			controle.setComandos(comandos)
 		t = loader.get_template('controles/controles.html')
 		c = Context({
+			'bloco':Bloco.objects.get(id=sala.bloco_id),
 			'controles':controles,
 			'sala':sala,
 			'weather':weather,

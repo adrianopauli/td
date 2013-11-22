@@ -1,7 +1,12 @@
 {% extends "controles/base.html"%}
 
 {% block title %} Salas{% endblock %}
-
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">Inicio</a>
+&rsaquo; {{ bloco.description|capfirst|escape }}
+</div>
+{% endblock %}
 {% block content %} 
 	{% if salas %}
 		{% for sala in salas %}

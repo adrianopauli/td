@@ -1,9 +1,13 @@
 {% extends "controles/base.html"%}
 
 {% block title %} Controles {% endblock %}
-
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">Inicio</a>
+&rsaquo; <a href="/salas">{{ bloco.description|capfirst|escape }}</a>
+</div>
+{% endblock %}
 {% block content %} 
-	<p>Controles para a sala {{ sala.description }}</p>
 	{% if weather  %}
 		<ul class="list-goup" sty>
 			<li class="list-group-item">
@@ -17,7 +21,7 @@
 		</ul>
 		<script type="text/javascript">
 		window.onload = function(){
-			setTimeout("getWeather('{{ sala.NE }}')",6000);		
+			setTimeout("getWeather('{{ sala.NE }}')",30000);		
 		};
 	</script>
 	{% endif%}

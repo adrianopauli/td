@@ -45,6 +45,7 @@
     {% block breadcrumbs %}
     <div class="breadcrumbs">
     <a href="/">{% trans 'Home' %}</a>
+    {% block navegacao %}{% endblock%}
     {% if title %} &rsaquo; {{ title }}{% endif %}
     </div>
     {% endblock %}

@@ -1,9 +1,14 @@
 {% extends "controles/base.html"%}
 
 {% block title %} Controles {% endblock %}
-
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">Inicio</a>
+&rsaquo; <a href="/salas">{{ bloco.description|capfirst|escape }}</a>
+&rsaquo; {{ sala.description|capfirst|escape }}
+</div>
+{% endblock %}
 {% block content %} 
-	<p>Controles para a sala {{ sala.description }}</p>
 	{% if weather  %}
 		<ul class="list-goup" sty>
 			<li class="list-group-item">

@@ -1,4 +1,4 @@
-{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+{% load admin_static %}{% load url from future %}<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
 <title>{% block title %}{% endblock %}</title>
@@ -44,7 +44,7 @@
     <!-- END Header -->
     {% block breadcrumbs %}
     <div class="breadcrumbs">
-    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    <a href="/">{% trans 'Home' %}</a>
     {% if title %} &rsaquo; {{ title }}{% endif %}
     </div>
     {% endblock %}
@@ -74,6 +74,6 @@
     {% block footer %}<div id="footer"></div>{% endblock %}
 </div>
 <!-- END Container -->
-
+{% block extrascript %}{% endblock %}
 </body>
 </html>
