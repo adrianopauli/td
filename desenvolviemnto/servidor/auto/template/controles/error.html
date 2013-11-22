@@ -1,7 +1,9 @@
 {% extends "controles/base.html"%}
 
-{% block title %} Error {% endblock %}
+{% block title %} Salas{% endblock %}
 
-{% block corpo %} 
-	<h1>{{ message }}</h1>
-{% endblock %}
+{% block content %} 
+	{% if message %}
+		<div class="alert alert-warning">{{ message }}</div>
+	{% endif %}
+{% endblock %}  

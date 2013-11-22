@@ -29,7 +29,7 @@ def salas(request):
 		})
 		return TemplateResponse(request,t,c)
 	else:
-		salas = Sala.objects.all().filter(bloco_id=bloco[0].id)
+		salas = Sala.objects.all().filter(bloco_id=bloco[0].id).filter(user = request.user)
 		t = loader.get_template('controles/salas.html')
 		c = Context({
 			'salas':salas,
@@ -38,24 +38,32 @@ def salas(request):
 		return TemplateResponse(request,t,c)
 @login_required
 def controles(request,sala_id):
-	sala = Sala.objects.get(id=sala_id)
-	pr = Protocolo()
-	weather = pr.sendWeather(str(sala.NE))
-	controles = Controle.objects.all().filter(sala=sala)
-	interuptores = Interuptor.objects.all().filter(sala=sala)
-	for controle in controles:
-		comandos = Comando.objects.all().filter(controle=controle)
-		controle.setComandos(comandos)
-	t = loader.get_template('controles/controles.html')
-	c = Context({
-		'controles':controles,
-		'sala':sala,
-		'weather':weather,
-		'user':request.user,
-		'interuptores':interuptores,
-	})
-	return TemplateResponse(request,t,c)
-
+	salas = Sala.objects.filter(id=sala_id).filter(user = request.user)
+	if salas :
+		sala = salas[0]
+		pr = Protocolo()
+		weather = pr.sendWeather(str(sala.NE))
+		controles = Controle.objects.all().filter(sala=sala)
+		interuptores = Interuptor.objects.all().filter(sala=sala)
+		for controle in controles:
+			comandos = Comando.objects.all().filter(controle=controle)
+			controle.setComandos(comandos)
+		t = loader.get_template('controles/controles.html')
+		c = Context({
+			'controles':controles,
+			'sala':sala,
+			'weather':weather,
+			'user':request.user,
+			'interuptores':interuptores,
+		})
+		return TemplateResponse(request,t,c)
+	else:
+		t = loader.get_template('controles/error.html')
+		c = Context({
+			'message': 'Acesso negado',
+			'user':request.user,
+	    	})
+		return TemplateResponse(request,t,c)
 @login_required
 def controle(request,controle_id,sala_id):
 	sala = Sala.objects.get(id=sala_id)

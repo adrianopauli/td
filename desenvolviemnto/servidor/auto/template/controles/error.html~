@@ -1,7 +1,7 @@
 {% extends "controles/base.html"%}
 
-{% block title %} Teste {% endblock %}
+{% block title %} Error {% endblock %}
 
 {% block corpo %} 
-
+	<h1>{{ message }}</h1>
 {% endblock %}

@@ -38,8 +38,8 @@ class Sala(models.Model):
 	bloco = models.ForeignKey(Bloco)
 	description = models.CharField("Descrição",max_length=200)
 	NE = models.PositiveIntegerField()
-	controles = models.ManyToManyField(Controle)
-	user = models.ManyToManyField(User)
+	controles = models.ManyToManyField(Controle,blank=True)
+	user = models.ManyToManyField(User,blank=True)
 	issensor = models.BooleanField("Sensores instalados")
 
 	def __unicode__(self):

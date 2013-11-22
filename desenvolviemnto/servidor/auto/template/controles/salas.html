@@ -8,6 +8,6 @@
 			<a class="btn btn-default" href="/controles/{{ sala.id}}">{{ sala.description }}</a>
 		{% endfor %}
 	{% else %}
-		<p>Não encontrei nenhum</p>
+		<div class="alert alert-warning">Nehuma sala disponvel</div>
 	{% endif %}
 {% endblock %}  
