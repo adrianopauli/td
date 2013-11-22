@@ -12,5 +12,5 @@ urlpatterns = patterns('',
 	url(r'^home/$','controles.home.index'),
 	
 	url(r'^ajax/ir/$','controles.ajax.sendIR'),
-	url(r'^ajax/salas/$','controles.ajax.getSalass'),
+	url(r'^ajax/salas/$','controles.ajax.getSalas'),
 )

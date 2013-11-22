@@ -53,11 +53,13 @@ def controles(request,sala_id):
 @login_required
 def controle(request,controle_id,sala_id):
 	sala = Sala.objects.get(id=sala_id)
+	controle = Controle.objects.get(id=controle_id)
 	comandos = Comando.objects.all().filter(controle_id=controle_id)
 	t = loader.get_template('controles/comandos.html')
 	c = Context({
 		'comandos':comandos,
 		'sala':sala,
+		'controle':controle,
 		'user':request.user,
 	})
 	return TemplateResponse(request,t,c)

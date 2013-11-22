@@ -4,11 +4,9 @@
 
 {% block content %} 
 	{% if salas %}
-		<ul>
-			{% for sala in salas %}
-			<li><a href="/controles/{{ sala.id}}">{{ sala.description }}</a></li>
-			{% endfor %}
-		</ul>
+		{% for sala in salas %}
+			<a class="btn btn-default" href="/controles/{{ sala.id}}">{{ sala.description }}</a>
+		{% endfor %}
 	{% else %}
 		<p>Não encontrei nenhum</p>
 	{% endif %}

@@ -3,17 +3,23 @@
 {% block title %} Controles {% endblock %}
 
 {% block content %} 
-	<p>{{ sala.description }}</p>
+	<p>Controles para a sala {{ sala.description }}</p>
 	{% if weather  %}
-		<p>Umidade: {{ weather.umidade }}</p>
-		<p>Temperatura: {{ weather.temperatura }}</p>	
+		<ul class="list-goup" sty>
+			<li class="list-group-item">
+			Umidade
+				<span class="badge">{{ weather.umidade }} °</span>
+			</li>	
+			<li class="list-group-item">
+			Temperatura
+				<span class="badge">{{ weather.temperatura }} °C</span>
+			</li>
+		</ul>
 	{% endif%}
 	{% if controles %}
-		<ul>
 			{% for controle in controles %}
-			<li><a href="/controle/{{ controle.id}}/{{ sala.id }}">{{ controle.description }}</a></li>
+			<a class="btn btn-default" href="/controle/{{ controle.id}}/{{ sala.id }}">{{ controle.description }}</a>
 			{% endfor %}
-		</ul>
 	{% else %}
 		<p>Não encontrei nenhum</p>
 	{% endif %}
