@@ -6,11 +6,16 @@
 	{{ admin.username }}
 	{% if blocos %}
 		{% for bloco in blocos %}
-			<a href="/salas" class="btn btn-default">{{ bloco.description }}</a>		
+			<button href="/salas" class="btn btn-default" onclick="getSalas('{{ bloco.id }}', '{{ token }}')">
+			<span class='glyphicon gyphicon-star'></span>			
+			{{ bloco.description }}</button>		
 		{% endfor %}
 	{% else %}
 		<p>Não a blocos cadastrados</p>
 	{% endif %}
+	<div id="messages">
+	
+	</div>
 {% endblock %}
 
 

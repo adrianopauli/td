@@ -1,4 +1,6 @@
 body{
     background-color: #eee;
 }
-
+#message{
+	font-size: 12px;
+}
