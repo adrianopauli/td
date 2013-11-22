@@ -62,16 +62,24 @@ class InteruptorAdmin(admin.ModelAdmin):
 class RotinaAdmin(admin.ModelAdmin):
 	fieldsets=[
 		('Dados da Rotina',
-			{'fields':['description','hora','data',],},
+			{'fields':['description',],},
 		),		
 		('Regras para data',
-			{'fields':['hora','data','allData','semana','horaData','horaFim','allData'],},
+			{'fields':['hora','data','semana','horaInicio','horaFim','allData'],},
 		),
 		('Regras para sensores',
 			{'fields':['teperatura','umidade'],},
 		),	
 		('Salas',{
 			'fields':['salas',],
+			'classes':('collapse',),
+		}),
+		('Comandos',{
+			'fields':['comandos',],
+			'classes':('collapse',),
+		}),
+		('Interuptor',{
+			'fields':['interuptores',],
 			'classes':('collapse',),
 		}),
 	]
