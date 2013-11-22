@@ -13,7 +13,7 @@ class rs485(object):
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(RE_PIN,GPIO.OUT)
 		GPIO.setup(DE_PIN,GPIO.OUT)
-		GPIO.output(RE_PIN,True)
+		GPIO.output(RE_PIN,False)
 		GPIO.output(DE_PIN,True)
 
 	def sendComand(self,comando):

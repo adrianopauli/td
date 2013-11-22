@@ -5,6 +5,9 @@ from django.contrib import admin
 class ComandosInlines(admin.TabularInline):
 	model = Comando
 	extra = 1
+class InteruptorInlines(admin.TabularInline):
+	model = Interuptor
+	extra = 1
 
 class ControleAdmin(admin.ModelAdmin):
 	fieldsets=[
@@ -19,7 +22,7 @@ class SalaAdmin(admin.ModelAdmin):
 	filter_horizontal = ('controles','user',) 
 	fieldsets=[
 		('Dados da sala',{
-			'fields':['bloco','description','NE',],
+			'fields':['bloco','description','NE','issensor',],
 		}),
 		('Adição de controntroles',{
 			'fields':['controles',],
@@ -30,6 +33,7 @@ class SalaAdmin(admin.ModelAdmin):
 			'classes':('collapse',),
 		}),
 	]
+	inlines = [InteruptorInlines]
 	list_filter = ('bloco','controles')
 	search_fields = ('description',)
 
@@ -50,15 +54,6 @@ class MarcaAdmin(admin.ModelAdmin):
 	]
 	search_fields = ('description',)
 
-class InteruptorAdmin(admin.ModelAdmin):
-	fieldsets=[
-		('Dados do interuptor',
-			{'fields':['description','porta','status',],},
-		),		
-	]
-	list_display = ('description','porta','status',)
-	search_fields = ('description',)
-
 class RotinaAdmin(admin.ModelAdmin):
 	fieldsets=[
 		('Dados da Rotina',
@@ -68,7 +63,7 @@ class RotinaAdmin(admin.ModelAdmin):
 			{'fields':['hora','data','semana','horaInicio','horaFim','allData'],},
 		),
 		('Regras para sensores',
-			{'fields':['teperatura','umidade'],},
+			{'fields':['temperatura','umidade'],},
 		),	
 		('Salas',{
 			'fields':['salas',],
@@ -90,5 +85,4 @@ admin.site.register(Bloco,BlocoAdmin)
 admin.site.register(Sala,SalaAdmin)
 admin.site.register(Marca,MarcaAdmin)
 admin.site.register(Controle,ControleAdmin)
-admin.site.register(Interuptor,InteruptorAdmin)
 admin.site.register(Rotina,RotinaAdmin)

@@ -2,7 +2,7 @@
 from django.template import Context, loader
 from django.template.response import TemplateResponse
 from django.http import HttpResponse
-from controles.models import Controle,Comando,Sala,Bloco
+from controles.models import Controle,Comando,Sala,Bloco,Interuptor
 from controles.protocolo import Protocolo,Weather 
 from django.contrib.sites.models import get_current_site
 from django.contrib.auth.decorators import login_required
@@ -42,17 +42,17 @@ def controles(request,sala_id):
 	pr = Protocolo()
 	weather = pr.sendWeather(str(sala.NE))
 	controles = Controle.objects.all().filter(sala=sala)
-	print(controles)
+	interuptores = Interuptor.objects.all().filter(sala=sala)
 	for controle in controles:
 		comandos = Comando.objects.all().filter(controle=controle)
 		controle.setComandos(comandos)
-	print(controles)
 	t = loader.get_template('controles/controles.html')
 	c = Context({
 		'controles':controles,
 		'sala':sala,
 		'weather':weather,
 		'user':request.user,
+		'interuptores':interuptores,
 	})
 	return TemplateResponse(request,t,c)
 
