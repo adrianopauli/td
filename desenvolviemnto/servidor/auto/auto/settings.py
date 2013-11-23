@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'controles',
+    'graficos',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
