@@ -55,8 +55,6 @@ class InteruptorAdmin(admin.ModelAdmin):
 		('Dados do interuptor',
 			{'fields':['description','porta','status',],},
 		),		
-
-		search_fields = ('description',)
 	]
 	list_display = ('description','porta','status',)
 	search_fields = ('description',)
@@ -76,7 +74,6 @@ class RotinaAdmin(admin.ModelAdmin):
 			'fields':['salas',],
 			'classes':('collapse',),
 		}),
-		search_fields = ('description',)
 	]
 	list_display = ('description','hora','data',)
 	search_fields = ('description',)
