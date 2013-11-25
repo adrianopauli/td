@@ -19,6 +19,7 @@ def index(request):
 
 @login_required
 def salas(request):
+	#bloco = Bloco.objects.filter(ip=request.META['REMOTE_ADDR'])
 	bloco = Bloco.objects.filter(ip=request.META['SERVER_NAME'])
 	if not bloco.exists():
 		t = loader.get_template('controles/error.html')
@@ -41,6 +42,11 @@ def controles(request,sala_id):
 	pr = Protocolo()
 	weather = pr.sendWeather(str(sala.NE))
 	controles = Controle.objects.all().filter(sala=sala)
+	print(controles)
+	for controle in controles:
+		comandos = Comando.objects.all().filter(controle=controle)
+		controle.setComandos(comando)
+	print(controles)
 	t = loader.get_template('controles/controles.html')
 	c = Context({
 		'controles':controles,

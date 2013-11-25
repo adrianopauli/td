@@ -6,7 +6,7 @@ from django.shortcuts import render_to_response
 from controles.protocolo import Protocolo
 
 def sendIR(request):
-	if request.is_ajax(): 
+	if request.method == 'POST': 
 		data = request.GET['comando']
 		node= request.GET['node']
 		pr = Protocolo()

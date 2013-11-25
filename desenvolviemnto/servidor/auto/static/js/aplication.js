@@ -2,12 +2,13 @@ function sendComand(comando,node){
 	 $.ajax({
         url: "/ajax/ir/",
         dataType: "text",
+        type: 'POST',
         data:{'comando':comando,'node':node},
         error: function(XMLHttpRequest, textStatus, errorThrown) {
 		messages('Não foi possivel enviar o comando!','error');
         },
         success: function(data, textStatus, XMLHttpRequest) {
-		messages('Comando eviado comsucesso','ok');
+		messages('Comando eviado com sucesso','ok');
         }
     });
 }
@@ -28,16 +29,18 @@ function messages(message,type){
 	setTimeout('fade_out()',2000);
 }
 
-function getSalas(id,token){
-	$.ajax({
-        url: "/ajax/salas/",
-        dataType: "text",
-        data:{'bloco':id,'csrftoken':toke},
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-		messages('Não foi possivel enviar o comando!','error');
-        },
-        success: function(data, textStatus, XMLHttpRequest) {
-		messages('Comando eviado comsucesso',data);
-        }
-    });
+function messages(message,type){
+	if(type == 'ok'){
+		sendHTML('#message','<div id="message_alert" class="alert alert-success">'+message+'</div>');
+	}else if(type == 'info'){
+		sendHTML('#message','<div id="message_alert" class="alert alert-info">'+message+'</div>');		
+	}else{
+		sendHTML('#message','<div id="message_alert" class="alert alert-warning">'+message+'</div>');
+	}
+	setTimeout('fade_out()',2000);
+}
+
+function sendHTML(id,html){
+	fade_out();
+	$(id).html(html);
 }

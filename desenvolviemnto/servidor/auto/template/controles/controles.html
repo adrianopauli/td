@@ -17,10 +17,21 @@
 		</ul>
 	{% endif%}
 	{% if controles %}
+
 			{% for controle in controles %}
-			<a class="btn btn-default" href="/controle/{{ controle.id}}/{{ sala.id }}">{{ controle.description }}</a>
+			<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">{{ controle.description }}</h3>
+				  </div>
+				  <div class="panel-body">
+				    {% for comando in controle.comandos %}
+						<button class="btn btn-default" onclick="sendComand('{{ comando.comando }}','{{ sala.NE }}')">{{ comando.description }}</button>
+					{% endfor%}
+				  </div>
+				</div>
 			{% endfor %}
 	{% else %}
 		<p>Não encontrei nenhum</p>
 	{% endif %}
 {% endblock %}  
+

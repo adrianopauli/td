@@ -1,5 +1,5 @@
 import serial
-import RPi.GPIO as GPIO
+zimport RPi.GPIO as GPIO
 
 ser = serial.Serial('/dev/ttyAMA0',4800,timeout=1)
 ser.open()

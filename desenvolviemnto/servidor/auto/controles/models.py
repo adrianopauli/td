@@ -20,7 +20,12 @@ class Controle(models.Model):
 	
 	def __unicode__(self):
 		return self.modelo+' - '+self.description+' - '+self.marca.description
+	def setComandos(self,comandos):
+		self.comandos = comandos
 
+	def getComandos(seld):
+		self.comandos
+		
 class Comando(models.Model):
 	controle = models.ForeignKey(Controle)
 	description = models.CharField("Descrição",max_length=200)
@@ -38,9 +43,17 @@ class Sala(models.Model):
 	def __unicode__(self):
 		return self.description
 
-	
 class Sensor(models.Model):
 	sala = models.ForeignKey(Sala)
 	temperatura = models.DecimalField(max_digits=2,decimal_places=2)
 	umidade = models.DecimalField(max_digits=2,decimal_places=2)
 	data = models.DateTimeField();
+
+class Interuptor(models.Model):
+	description = models.CharField("Descrição",max_length=200)
+	porta = models.PositiveIntegerField()
+	status = models.BooleanField("Situação")
+	sala = models.ForeignKey(Sala)
+
+	def __unicode__(self):
+		return self.description
