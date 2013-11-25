@@ -63,6 +63,7 @@ class Interuptor(models.Model):
 class Rotina(models.Model):
 	description = models.CharField("Descrição",max_length=200)
 	comandos = models.ManyToManyField(Comando)
+	interuptores = models.ManyToManyField(Interuptor)
 	salas = models.ManyToManyField(Sala)
 	data = models.DateField(blank=True)
 	allData = models.BooleanField(blank=True)
