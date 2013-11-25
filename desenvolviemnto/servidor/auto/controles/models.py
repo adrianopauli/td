@@ -40,6 +40,8 @@ class Sala(models.Model):
 	NE = models.PositiveIntegerField()
 	controles = models.ManyToManyField(Controle)
 	user = models.ManyToManyField(User)
+	issensor = models.BooleanField("Sensores instalados")
+
 	def __unicode__(self):
 		return self.description
 
@@ -57,3 +59,16 @@ class Interuptor(models.Model):
 
 	def __unicode__(self):
 		return self.description
+
+class Rotinas(models.Model):
+	description = models.CharField("Descrição",max_length=200)
+	comandos = models.ManyToManyField(Comando)
+	salas = models.ManyToManyField(Sala)
+	data = models.DateField(blank=True)
+	allData = models.BooleanField(blank=True)
+	semana = models.CharField(max_length=10, choices=(('seg', 'Segunda'), ('ter', 'Terça')))
+	hora = models.DateTimeField(blank=True)
+	horaInicio = models.DateTimeField(blank=True)
+	horaFim = models.DateTimeField(blank=True)
+	temperatura = models.DecimalField(max_digits=2,decimal_places=2,blank=True)
+	umidade = models.DecimalField(max_digits=2,decimal_places=2,blank=True)

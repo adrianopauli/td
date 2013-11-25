@@ -49,8 +49,41 @@ class MarcaAdmin(admin.ModelAdmin):
 		),		
 	]
 	search_fields = ('description',)
-	
+
+class InteruptorAdmin(admin.ModelAdmin):
+	fieldsets=[
+		('Dados do interuptor',
+			{'fields':['description','porta','status',],},
+		),		
+
+		search_fields = ('description',)
+	]
+	list_display = ('description','porta','status',)
+	search_fields = ('description',)
+
+class RotinaAdmin(admin.ModelAdmin):
+	fieldsets=[
+		('Dados da Rotina',
+			{'fields':['description','hora','data',],},
+		),		
+		('Regras para data',
+			{'fields':['hora','data','allData','semana','horaData','horaFim','allData'],},
+		),
+		('Regras para sensores',
+			{'fields':['teperatura','umidade'],},
+		),	
+		('Salas',{
+			'fields':['salas',],
+			'classes':('collapse',),
+		}),
+		search_fields = ('description',)
+	]
+	list_display = ('description','hora','data',)
+	search_fields = ('description',)
+
 admin.site.register(Bloco,BlocoAdmin)
 admin.site.register(Sala,SalaAdmin)
 admin.site.register(Marca,MarcaAdmin)
 admin.site.register(Controle,ControleAdmin)
+admin.site.register(Interuptor,InteruptorAdmin)
+admin.site.register(Rotina,RotinaAdmin)
