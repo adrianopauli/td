@@ -45,7 +45,7 @@ def controles(request,sala_id):
 	print(controles)
 	for controle in controles:
 		comandos = Comando.objects.all().filter(controle=controle)
-		controle.setComandos(comando)
+		controle.setComandos(comandos)
 	print(controles)
 	t = loader.get_template('controles/controles.html')
 	c = Context({
