@@ -1,7 +1,7 @@
 function sendComand(comando,node){
 	 $.ajax({
         url: "/ajax/ir/",
-        dataType: "text",
+        dataType: "json",
         type: 'POST',
         data:{'comando':comando,'node':node},
         error: function(XMLHttpRequest, textStatus, errorThrown) {
