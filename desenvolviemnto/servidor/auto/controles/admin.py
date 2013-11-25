@@ -65,7 +65,7 @@ class RotinaAdmin(admin.ModelAdmin):
 			{'fields':['description',],},
 		),		
 		('Regras para data',
-			{'fields':['hora','data','semana','horaData','horaFim','allData'],},
+			{'fields':['hora','data','semana','horaInicio','horaFim','allData'],},
 		),
 		('Regras para sensores',
 			{'fields':['teperatura','umidade'],},
