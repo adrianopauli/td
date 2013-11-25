@@ -15,4 +15,5 @@ def index(request):
 		'user':request.user,
     	})
 	return TemplateResponse(request,t,c)
+def index(request):
     

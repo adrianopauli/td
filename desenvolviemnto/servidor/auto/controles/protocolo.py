@@ -92,8 +92,14 @@ class Protocolo(object):
 class Weather(object):
 	
 	def __init__(self,data):
-		if data != TAGS.DATA_ERROR:
-			d = data.split(TAGS.DATA_SEPARATOR)
-			if len(d) == 2:
-				self.umidade = d[0]
-				self.temperatura = d[1] 	
+		self.umidade = 0
+		self.temperatura = 0			
+		try:
+			if data != TAGS.DATA_ERROR:
+				d = data.split(TAGS.DATA_SEPARATOR)
+				if len(d) == 2:
+					self.umidade = d[0]
+					self.temperatura = d[1] 
+		except e:
+			self.umidade = 0
+			self.temperatura = 0			

@@ -9,7 +9,6 @@
 </div>
 {% endblock %}
 {% block content %} 
-<script type="text/javascript" src="/static/js/jquery.js"></script>
 <script type="text/javascript">
 $(function () {
         $('#container').highcharts({
@@ -68,6 +67,7 @@ $(function () {
 {% endblock %}  
 
 {% block extrascript %}
+<script type="text/javascript" src="/static/js/jquery.js"></script>
 <script type="text/javascript" src="/static/js/chart/highcharts.js"></script>
 <script type="text/javascript" src="/static/js/chart/exporting.js"></script>
 {% endblock %}

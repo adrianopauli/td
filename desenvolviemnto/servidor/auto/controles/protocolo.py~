@@ -1,7 +1,6 @@
 from controles.comunicacao import rs485
 from controles.singleton import Singleton
 import array
-import time
 
 class Con(object):
 	__metaclass__=Singleton
@@ -75,7 +74,6 @@ class Protocolo(object):
 		comando += TAGS.BYTE_SEPARATOR+TAGS.DATA_NULL
 		comando += TAGS.BYTE_STOP
 		if con.rs.sendComand(comando):
-			time.sleep(1)
 			weather = Weather(str(self.interpreterWeather(str(con.rs.readComand()))))			
 			return weather
 		else:
@@ -94,8 +92,12 @@ class Protocolo(object):
 class Weather(object):
 	
 	def __init__(self,data):
-		if data != TAGS.DATA_ERROR:
-			d = data.split(TAGS.DATA_SEPARATOR)
-			if len(d) == 2:
-				self.umidade = d[0]
-				self.temperatura = d[1] 	
+		try:
+			if data != TAGS.DATA_ERROR:
+				d = data.split(TAGS.DATA_SEPARATOR)
+				if len(d) == 2:
+					self.umidade = d[0]
+					self.temperatura = d[1] 
+		except e:
+			self.umidadee = 0
+			self.temperatura = 0			

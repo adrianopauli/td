@@ -14,4 +14,6 @@ urlpatterns = patterns('',
 	url(r'^ajax/ir/$','controles.ajax.sendIR'),
 	url(r'^ajax/rele/$','controles.ajax.sendRele'),
 	url(r'^ajax/weather/$','controles.ajax.getWeather'),
+
+	url(r'^graficos/$','graficos.views.index'),
 )
