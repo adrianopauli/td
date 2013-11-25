@@ -60,7 +60,7 @@ class Interuptor(models.Model):
 	def __unicode__(self):
 		return self.description
 
-class Rotinas(models.Model):
+class Rotina(models.Model):
 	description = models.CharField("Descrição",max_length=200)
 	comandos = models.ManyToManyField(Comando)
 	salas = models.ManyToManyField(Sala)
